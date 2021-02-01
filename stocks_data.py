@@ -1,6 +1,5 @@
 import praw
 import matplotlib.pyplot as plt
-# import pandas_datareader as web
 import pandas as pd
 import datetime as dt
 from yahoo_fin import stock_info as si
