@@ -7,6 +7,13 @@ from yahoo_fin import stock_info as si
 
 ''' A tool to parse r/WSB for stock mentions in the Daily Discussion thread.'''
 
+# to obfuscate the secret stuff
+with open('secret_stuff.txt', 'r') as f:
+    secret_list = []
+    lines = f.readlines()
+    for line in lines:
+        secret_list.append(line.strip())
+    client_id, client_secret, user_agent = secret_list
 
 # note that username and password are not required if just gathering data (not posting, commenting, updooting, etc.)
 username = ''
