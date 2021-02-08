@@ -8,10 +8,7 @@ from yahoo_fin import stock_info as si
 
 # to obfuscate the secret stuff
 with open('secret_stuff.txt', 'r') as f:
-    secret_list = []
-    lines = f.readlines()
-    for line in lines:
-        secret_list.append(line.strip())
+    secret_list = [line.strip() for line in f.readlines()]
     client_id, client_secret, user_agent = secret_list
 
 # note that username and password are not required if just gathering data (not posting, commenting, updooting, etc.)
@@ -62,7 +59,9 @@ def read_stonk_tickers_from_file():
 
 
 def plot_results(vals, keys, pos):
-    """plot the mentions of each ticker in a bar chart"""
+    """plot the mentions of each ticker in a bar chart
+    the vals is an int, keys is a string, and pos
+    is an int"""
     plt.bar(pos, vals, color='green')
     plt.xticks(ticks=pos, labels=keys)
     plt.xlabel('Stonk Ticker')
@@ -73,7 +72,8 @@ def plot_results(vals, keys, pos):
 
 
 def stonks_to_buy(a_dict):
-    """create the empty portfolio of the top 4 stocks from those mentioned"""
+    """create the empty portfolio of the top 4 stocks from those mentioned
+    accepts an empty dictionary as an argument"""
     portfolio = {}
     while (len(portfolio) < 4) and (len(a_dict) >= 1):
         keymax = max(a_dict, key=a_dict.get)
@@ -87,7 +87,7 @@ def buy_stonks(portfolio, shares=10):
     and calculates the value of each position, puts it in the 'portolio' dictionary"""
     # downloads the current price on the date the script runs
     # takes principal, and splits evenly into each stock
-    for key in portfolio.keys():
+    for key in portfolio:
         price = si.get_live_price(key)
         value_each_ticker = shares * price
         portfolio[key] = value_each_ticker
@@ -97,7 +97,7 @@ def buy_stonks(portfolio, shares=10):
 def get_portfolio_value(portfolio):
     """simple sum of all positions in portfolio and returns value"""
     total_value = 0
-    for key in portfolio.keys():
+    for key in portfolio:
         price = si.get_live_price(key)
         total_value += (portfolio[key])
     return total_value
@@ -138,7 +138,7 @@ performance_tracker_dataframe['DoD % Change'] = 'NaN'
 
 i = 1
 print(portfolio)
-for key in portfolio.keys():
+for key in portfolio:
     performance_tracker_dataframe[f'Position {i}'] = key
     print(key)
     i += 1

@@ -1,0 +1,5 @@
+matplotlib
+pandas
+praw
+yahoo_fin
+datetime
