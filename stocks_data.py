@@ -40,7 +40,7 @@ def stonk_counter(hot_subred):
                     if stonk in comment.body.split(' '):
                         mentions += 1
                     # get rid of stonks with very few mentions
-                    if mentions > 30:
+                    if mentions > 10:
                         mentions_dict[stonk] = mentions
                     else:
                         pass
@@ -122,7 +122,7 @@ try:
     # accepts a dict, returns a dict with the value of each stonk in the portfolio, given X shares
     account_value = buy_stonks(portfolio)
 
-except:
+except Exception:
     print('An error occurred. This is likely because there is not a Daily Discussions post up in WSB.')
 
 # returns a single dollar value of the portfolio
