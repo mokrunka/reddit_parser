@@ -98,7 +98,7 @@ def get_portfolio_value(portfolio):
     """simple sum of all positions in portfolio and returns value"""
     total_value = 0
     for key in portfolio:
-        price = si.get_live_price(key)
+        # price = si.get_live_price(key)
         total_value += (portfolio[key])
     return total_value
 
@@ -129,12 +129,20 @@ except Exception:
 final_portfolio_value = get_portfolio_value(account_value)
 performance_tracker_list = []
 performance_tracker_list.append([final_portfolio_value, dt.datetime.today()])
+print(f'performance tracker list {performance_tracker_list}')
 
 # create a dataframe to dump into a .csv file for historical data on our portfolio's performance
 performance_tracker_dataframe = pd.DataFrame(performance_tracker_list, columns=['Portfolio Value', 'Date'])
 
 # add a column to calculate rolling performance of the portfolio
 performance_tracker_dataframe['DoD % Change'] = 'NaN'
+
+i = 1
+print(portfolio)
+for key in portfolio:
+    performance_tracker_dataframe[f'Position {i}'] = key
+    print(key)
+    i += 1
 
 with open('stonksrollup.txt', 'r') as f:
     lines = f.readlines()

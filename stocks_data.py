@@ -30,7 +30,7 @@ def stonk_counter(hot_subred):
         if 'Daily Discussion' in post.title:
             print(f'Post Title: {post.title}, upvotes: {post.ups}')
             # adjust limit arg (set low for testing)
-            post.comments.replace_more(limit=100)
+            post.comments.replace_more(limit=10)
             mentions = 0
             list_of_stonks = read_stonk_tickers_from_file()
             mentions_dict = {}
@@ -45,6 +45,8 @@ def stonk_counter(hot_subred):
                         mentions_dict[stonk] = mentions
                     else:
                         pass
+    if '' in mentions_dict:
+        del mentions_dict['']
     print(f'Stonk Mentions: {mentions_dict}, total comments parsed: {comments}')
     return mentions_dict
 
