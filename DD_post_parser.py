@@ -4,7 +4,7 @@ import pandas as pd
 import datetime as dt
 from yahoo_fin import stock_info as si
 
-''' A tool to parse r/WSB for stock mentions in the Daily Discussion thread.'''
+''' A tool to parse r/WSB for stock mentions in Due Diligence threads.'''
 
 # to obfuscate the secret stuff
 with open('secret_stuff.txt', 'r') as f:
@@ -66,7 +66,7 @@ def plot_results(vals, keys, pos):
     plt.xticks(ticks=pos, labels=keys)
     plt.xlabel('Stonk Ticker')
     plt.ylabel('Number of Mentions')
-    plt.title('Mentions of Stock Tickers in Daily Discussion Thread\n'
+    plt.title('Mentions of Stock Tickers in Due Diligence Threads\n'
               'on r/wallstreetbets')
     plt.show()
 
@@ -123,7 +123,7 @@ try:
     account_value = buy_stonks(portfolio)
 
 except Exception:
-    print('An error occurred. This is likely because there is not a Daily Discussions post up in WSB.')
+    print('An error occurred. Please try again.')
 
 # returns a single dollar value of the portfolio
 final_portfolio_value = get_portfolio_value(account_value)
