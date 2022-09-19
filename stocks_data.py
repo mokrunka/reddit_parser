@@ -1,7 +1,7 @@
+import datetime as dt
 import praw
 import matplotlib.pyplot as plt
 import pandas as pd
-import datetime as dt
 from yahoo_fin import stock_info as si
 
 ''' A tool to parse r/WSB for stock mentions in the Daily Discussion thread.'''
