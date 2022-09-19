@@ -1,5 +1,5 @@
 matplotlib
 pandas
 praw
-yahoo_finance_async
+yahoo_fin
 datetime
